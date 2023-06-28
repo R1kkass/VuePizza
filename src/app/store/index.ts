@@ -1,16 +1,90 @@
-import { createStore } from "vuex";
+import { createStore, Store } from "vuex";
+import {
+    DeleteBasketApi,
+    GetBasketApi,
+    IDataBasket,
+    IUpdateBasket,
+    UpdateBasketApi,
+} from "../api/BasketApi";
+import { IOrder } from "../api/OrderApi";
+import {mutationOrder} from './order'
+import { actionPizza } from "./pizza";
 
 interface IState {
-    show: boolean
+    show: boolean;
+    pizza: IPizza[];
+    token: string | null;
+    taste: ITaste[];
+    basket: IDataBasket[];
+    order: IOrder[]
+}
+
+interface IPizza {
+    name: string;
+    price: string;
+}
+
+interface ITaste {
+    name: string;
+    price: string;
+    image: string;
 }
 
 export default createStore<IState>({
     state: {
-        show: false
+        show: false,
+        pizza: [],
+        token: localStorage.getItem("access_token"),
+        taste: [],
+        basket: [],
+        order: []
     },
     mutations: {
-        switchBasket(state: IState) {
-            state.show = !state.show
+        switchBasket(state: IState, e: boolean) {
+            state.show = e;
+        },
+        setPizza(state: IState, pizza: IPizza[]) {
+            state.pizza = pizza;
+        },
+        setToken(state: IState) {
+            state.token = localStorage.getItem("access_token");
+        },
+        setTaste(state: IState, taste: ITaste[]) {
+            state.taste = taste;
+        },
+        setBasket(state: IState, basket: IDataBasket[]) {
+            state.basket = basket;
+        },
+        setOrder(state: IState, order: IOrder[]) {
+            state.order = order
         }
-    }
-})
+    },
+    getters: {
+        getPizza(state: IState) {
+            return state.pizza;
+        },
+    },
+    actions: {
+        showBasket({commit}: Store, route: any){
+            route.router.push({ path: route.route.path, query: { basket: true }})
+            commit('switchBasket', true)
+        },
+        fetchBasket({ commit }: Store) {
+            GetBasketApi().then((e) => {
+                commit("setBasket", e);
+            });
+        },
+        updateBasket({ commit }: Store, data: IUpdateBasket) {
+            UpdateBasketApi(data).then((e) => {
+                commit("setBasket", e);
+            });
+        },
+        deleteBasket({ commit }: Store, id: string) {
+            DeleteBasketApi(id).then((e) => {
+                commit("setBasket", e);
+            });
+        },
+        ...mutationOrder,
+        ...actionPizza
+    },
+});

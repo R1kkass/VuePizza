@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Comfortaa", cursive;
+    margin: 0 auto;
+}
+
+#app {
+    height: 100%;
+    position: relative;
+}
+
+button,
+input {
+    font-family: "Comfortaa", cursive;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+h2,
+h3,
+h4 {
+    font-weight: 700;
+}
+
+* {
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb {
+        width: 26px;
+        border-radius: 13px;
+        background-clip: padding-box;
+        border: 10px solid transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 0 10px rgb(197, 197, 197);
+    }
+}

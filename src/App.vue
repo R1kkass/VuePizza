@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import Head from './features/Head/Head.vue';
-// import Home from './page/Home/Home.vue';
+import BasketWrapper from './shared/BasketWrapper/BasketWrapper.vue'
+import RefresWrapper from './shared/RefreshWrapper/RefreshWrapper.vue'
 </script>
 
 <template>
       <Head></Head>
-      <!-- <Home></Home> -->
       <router-view></router-view>
+      <BasketWrapper></BasketWrapper>
+      <RefresWrapper></RefresWrapper>
 </template>
 
 <style scoped>
