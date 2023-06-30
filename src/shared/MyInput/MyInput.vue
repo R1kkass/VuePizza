@@ -1,5 +1,6 @@
 <template>
-    <input @input="updateInput" class="MyInput" />
+    <input v-if="myvalue!==undefined" @input="updateInput" :value="myvalue" class="MyInput" />
+    <input v-else @input="updateInput" class="MyInput" />
 </template>
 
 <script lang="ts">
@@ -7,6 +8,7 @@ export default {
     name: "MyInput",
     props: {
         modelValue: String,
+        myvalue: String,
     },
     methods: {
         updateInput(event: Event) {

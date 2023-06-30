@@ -19,10 +19,13 @@ body {
     position: relative;
 }
 
+button{
+    cursor: pointer;
+}
+
 button,
 input {
     font-family: "Comfortaa", cursive;
-    cursor: pointer;
 }
 
 h1 {

@@ -7,8 +7,9 @@ import {
     UpdateBasketApi,
 } from "../api/BasketApi";
 import { IOrder } from "../api/OrderApi";
-import {mutationOrder} from './order'
+import { mutationOrder } from "./order";
 import { actionPizza } from "./pizza";
+import { actionAdminORder } from "./admOrder";
 
 interface IState {
     show: boolean;
@@ -16,7 +17,8 @@ interface IState {
     token: string | null;
     taste: ITaste[];
     basket: IDataBasket[];
-    order: IOrder[]
+    order: IOrder[];
+    admOrder: IOrder[];
 }
 
 interface IPizza {
@@ -37,7 +39,8 @@ export default createStore<IState>({
         token: localStorage.getItem("access_token"),
         taste: [],
         basket: [],
-        order: []
+        order: [],
+        admOrder: [],
     },
     mutations: {
         switchBasket(state: IState, e: boolean) {
@@ -56,8 +59,11 @@ export default createStore<IState>({
             state.basket = basket;
         },
         setOrder(state: IState, order: IOrder[]) {
-            state.order = order
-        }
+            state.order = order;
+        },
+        setAdmOrder(state: IState, order: IOrder[]) {
+            state.admOrder = order;
+        },
     },
     getters: {
         getPizza(state: IState) {
@@ -65,9 +71,12 @@ export default createStore<IState>({
         },
     },
     actions: {
-        showBasket({commit}: Store, route: any){
-            route.router.push({ path: route.route.path, query: { basket: true }})
-            commit('switchBasket', true)
+        showBasket({ commit }: Store, route: any) {
+            route.router.push({
+                path: route.route.path,
+                query: { basket: true },
+            });
+            commit("switchBasket", true);
         },
         fetchBasket({ commit }: Store) {
             GetBasketApi().then((e) => {
@@ -85,6 +94,7 @@ export default createStore<IState>({
             });
         },
         ...mutationOrder,
-        ...actionPizza
+        ...actionPizza,
+        ...actionAdminORder
     },
 });

@@ -12,9 +12,7 @@
 
             <MyInput v-model="category" placeholder="Категория" />
             <span class="Danger">{{ errors.category }}</span>
-
-            <MyInput v-model="image" placeholder="IMG URL" />
-            <span class="Danger">{{ errors.image }}</span>
+            <FileInput :file="file" @previewFiles="previewFiles"></FileInput>
 
             <MyInput v-model="weight" placeholder="Количесво/вес/литраж" />
             <span class="Danger">{{ errors.weight }}</span>
@@ -39,14 +37,14 @@ import * as yup from "yup";
 import { MaybeRef, ref } from "vue";
 import { useStore } from "vuex";
 import { IPizza } from "../../app/api/PizzaApi";
+import FileInput from "@/shared/FileInput/FileInput.vue";
 
 const show = ref(false);
-const props = defineProps(["count", "price"]);
+defineProps(["count", "price"]);
 
 const schema = yup.object<IPizza>({
     category: yup.string().required("⚠ Укажите категорию"),
     name: yup.string().required("⚠ Укажите название"),
-    image: yup.string().required("⚠ Укажите ссылку"),
     weight: yup.string().required("⚠ Укажите вес"),
     ingredients: yup.string().required("⚠ Укажите ингредиент"),
     price: yup.string().required("⚠ Укажите цена"),
@@ -60,22 +58,28 @@ function showUpdate() {
     show.value = !show.value;
 }
 
-const [category, name, image, weight, ingredients, price] =
-    useFieldModel<MaybeRef>([
-        "category",
-        "name",
-        "image",
-        "weight",
-        "ingredients",
-        "price",
-    ]);
+const [category, name, weight, ingredients, price] = useFieldModel<MaybeRef>([
+    "category",
+    "name",
+    "image",
+    "weight",
+    "ingredients",
+    "price",
+]);
+interface InputFileEvent extends Event {
+    target: HTMLInputElement;
+}
 
 const store = useStore();
-
+const file = ref();
+function previewFiles(event: InputFileEvent) {
+    file.value = event?.target?.files?.[0];
+}
 const onSubmit = handleSubmit((data: IPizza) => {
-    store.dispatch("createPizza", data)
-    .then(e=>show.value=false);
+    if (file.value) {
+        data.file = file.value;
+        store.dispatch("createPizza", data).then(() => (show.value = false));
+        file.value = null;
+    }
 });
 </script>
-
-<style lang="scss"></style>

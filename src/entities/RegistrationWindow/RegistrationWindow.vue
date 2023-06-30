@@ -56,7 +56,7 @@ export default {
             email: "",
             password: "",
             passwordRepeat: "",
-            error: ""
+            error: "",
         };
     },
     methods: {
@@ -69,8 +69,10 @@ export default {
                 password: this.password,
                 basketId: localStorage.getItem("basketId") || "",
             })
-            .then(() => this.close())
-            .catch(e=>this.error="⚠ " + e?.data?.message || "Ошибка")
+                .then(() => this.close())
+                .catch(
+                    (e) => (this.error = "⚠ " + e?.data?.message || "Ошибка")
+                );
         },
         close() {
             this.$emit("close");
@@ -88,6 +90,8 @@ export default {
 }
 
 .FormAuth {
+    padding-inline: 5px;
+
     margin-top: 20px;
     display: flex;
     flex-direction: column;

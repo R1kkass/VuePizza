@@ -72,8 +72,8 @@ const [category, name, image, weight, ingredients, price] =
 const store = useStore();
 
 const onSubmit = handleSubmit((data: IPizza) => {
-    store.dispatch("createPizza", data)
-    .then(e=>show.value=false);
+    data.id = pizza._id;
+    store.dispatch("createPizza", data).then(() => (show.value = false));
 });
 </script>
 

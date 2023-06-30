@@ -15,11 +15,11 @@ export interface IOrder {
     name: String;
     price?: number;
     product?: IDataBasket[];
-    date?: number
+    date?: number;
 }
 
 export const AddOrderApi = async (data: IOrder) => {
-    data.date = Date.now()
+    data.date = Date.now();
     const order = await axios.post(`${domen}/order/addorder`, data, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -38,10 +38,23 @@ export const GetAllOrderApi = async () => {
 };
 
 export const DeleteOrder = async (id: String) => {
-    const order: IData<IOrder> = await axios.delete(`${domen}/order/getall?_id=${id}`, {
+    const order: IData<IOrder> = await axios.delete(
+        `${domen}/order/getall?_id=${id}`,
+        {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }
+    );
+    return order.data;
+};
+
+export const AdminOrderAll = async () => {
+    const order: IData<IOrder> = await axios.get(`${domen}/order/getalladm`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
     });
-    return order.data;
-} 
+
+    return order.data
+};
