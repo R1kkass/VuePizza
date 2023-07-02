@@ -1,12 +1,13 @@
 import axios from "axios";
 import { domen } from "../const/domen";
-import { IDataBasket } from "./BasketApi";
+import { IAddTaste } from "./BasketApi";
 
 export interface IData<T> {
     data: T;
 }
 
 export interface IOrder {
+    _id?: string;
     count?: Number;
     phone: String;
     street: String;
@@ -14,8 +15,23 @@ export interface IOrder {
     city: String;
     name: String;
     price?: number;
-    product?: IDataBasket[];
+    product?: IProduct[]
     date?: number;
+    status?: string
+}
+
+export  interface IProduct{
+    product: {
+        _id: string;
+        name: string;
+        addTaste: IAddTaste[];
+        dough: string;
+        size: string;
+        image: string;
+    }
+    price: string;
+    count: number;
+    _id: string    
 }
 
 export const AddOrderApi = async (data: IOrder) => {
@@ -58,3 +74,17 @@ export const AdminOrderAll = async () => {
 
     return order.data
 };
+
+interface IUpdateOrder{
+    id: string,
+    status: string
+}
+
+export const UpdateOrder = async (data: IUpdateOrder) => {
+    const order = await axios.put(`${domen}/order/update`, data, {
+        headers: {
+            Authorization: `bearer ${localStorage.getItem('access_token')}`
+        }
+    }) 
+    return order.data
+}

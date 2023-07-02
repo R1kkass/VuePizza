@@ -541,7 +541,7 @@
     </svg>
 </template>
 
-<script lant="ts">
+<script lang="ts">
 export default {
     name: "Dog"
 }

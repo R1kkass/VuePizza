@@ -7,8 +7,8 @@
 export default {
     name: "MyInput",
     props: {
-        modelValue: String,
-        myvalue: String,
+        modelValue: String || undefined,
+        myvalue: String || undefined,
     },
     methods: {
         updateInput(event: Event) {

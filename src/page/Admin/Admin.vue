@@ -1,6 +1,6 @@
 <template>
     <div
-        class="w-[90%] xl:grid-cols-2 xl:w-[1280px] min-h-[80vh] gap-5 m-auto grid grid-cols-1 xl:grid-rows-2 grid-rows-3"
+        class="w-[90%] xl:grid xl:grid-cols-2 xl:w-[1280px] min-h-[80vh] gap-5 m-auto flex flex-col xl:grid-rows-2 grid-rows-3"
     >
         <div
             class="border border-gray-500 col-start-1 relative col-end-1 overflow-hidden"
@@ -15,31 +15,24 @@
                 <AdminProductCard
                     :pizza="product"
                     v-for="product in $store.state.pizza"
+                    v-bind:key="product._id"
                 >
-                    {{ product._id }}
                 </AdminProductCard>
             </div>
         </div>
-        <div
-            class="border border-gray-500 xl:col-start-2 xl:col-end-2 xl:row-start-1 row-start-3 col-start-1"
-        >
-            <div
-                class="flex items-center text-white ps-2 pe-2 justify-between h-[60px] bg-gray-500"
-            >
-                <h2>Заказы</h2>
-            </div>
-            <div class="h-[300px] overflow-y-scroll">
-                <AdminOrderCard
+        <GridAdmin name="Заказы" col="2" row="1">
+            <AdminOrderCard
                     :order="product"
                     v-for="product in $store.state.admOrder"
+                    v-bind:key="product._id"
                 >
-                    {{ product._id }}
                 </AdminOrderCard>
-            </div>
-        </div>
-        <div class="row-start-2 row-end-2 grid-flow-col col-start-1 col-span-2">
-            321
-        </div>
+        </GridAdmin>
+        <GridAdmin name="Добавить по вкусу" col="1" row="2">
+            <TasteCard/>
+        </GridAdmin>
+        <GridAdmin name="Пользователи" col="2" row="2"></GridAdmin>
+        <div></div>
     </div>
 </template>
 
@@ -51,6 +44,8 @@ import { domen } from "@/app/const/domen";
 import AdminProductCard from "@/features/AdminProductCard/AdminProductCard.vue";
 import AddPizzaModal from "../../entities/AddPizzaModal/AddPizzaModal.vue";
 import AdminOrderCard from "@/features/AdminOrderCard/AdminOrderCard.vue";
+import TasteCard from '@/features/TasteCard/TasteCard.vue'
+import GridAdmin from "@/widget/GridAdmin/GridAdmin.vue"
 
 const store = useStore();
 
@@ -58,6 +53,6 @@ onMounted(async () => {
     const pizza = await axios.get(`${domen}/pizza/getall`);
     store.commit("setPizza", pizza.data.pizzas);
     store.dispatch("getAllAdminOrder");
-
+    store.dispatch('getTaste')
 });
 </script>

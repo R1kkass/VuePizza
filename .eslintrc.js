@@ -1,15 +1,10 @@
 module.exports = {
-    env: {
-      node: true,
-    },
     extends: [
       'eslint:recommended',
       'plugin:vue/vue3-recommended',
+    //   'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
     ],
     rules: {
-      // override/add rules settings here, such as:
-      // 'vue/no-unused-vars': 'error'
-        "vue/no-multiple-template-root": 0
-        
+      'vue/no-unused-vars': 'error'
     }
   }

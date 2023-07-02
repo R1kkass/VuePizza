@@ -1,4 +1,5 @@
 <template>
+    <div>
     <MyButton
         @click="showUpdate"
         type="mini"
@@ -43,6 +44,8 @@
             <MyButton type="fullSize" color="orange">Обновить</MyButton>
         </form>
     </Modal>
+    </div>
+    <div></div>
 </template>
 
 <script setup lang="ts">
