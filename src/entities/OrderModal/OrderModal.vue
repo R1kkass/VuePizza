@@ -28,7 +28,7 @@
 import Modal from "@/shared/Modal/Modal.vue";
 import Order from "@/assets/Order.vue";
 import { PropType } from "vue";
-import {IOrder} from '@/app/api/OrderApi'
+import {IProduct} from '@/app/api/OrderApi'
 
 export default {
     name: "OrderModal",
@@ -39,7 +39,10 @@ export default {
     },
     components: { Modal, Order },
     props: {
-        products: Array as PropType<IOrder[]>,
+        products: {
+            type:Array as PropType<IProduct[]>,
+            required: false
+        }
     },
 };
 </script>

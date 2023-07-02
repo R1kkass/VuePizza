@@ -10,6 +10,7 @@ import { IOrder } from "../api/OrderApi";
 import { mutationOrder } from "./order";
 import { actionPizza } from "./pizza";
 import { actionAdminORder } from "./admOrder";
+import { actionTaste } from "./taste";
 
 interface IState {
     show: boolean;
@@ -95,6 +96,7 @@ export default createStore<IState>({
         },
         ...mutationOrder,
         ...actionPizza,
-        ...actionAdminORder
+        ...actionAdminORder,
+        ...actionTaste
     },
 });
