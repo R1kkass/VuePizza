@@ -51,7 +51,7 @@ import MyButton from "@/shared/MyButton/MyButton.vue";
 import MyInput from "@/shared/MyInput/MyInput.vue";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { MaybeRef, PropType, onMounted, ref } from "vue";
+import { MaybeRef, PropType, ref } from "vue";
 import { useStore } from "vuex";
 import { IPizza } from "../../app/api/PizzaApi";
 import FileInput from "@/shared/FileInput/FileInput.vue";

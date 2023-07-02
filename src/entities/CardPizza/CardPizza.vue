@@ -65,10 +65,12 @@ export default {
         transition: 0.3s;
         img {
             transform: translate(0, 10px);
+            
         }
     }
     &__image {
         margin-bottom: 10px;
+        height: 218px;
         transition: 0.3s;
         img {
             transition: 0.3s;
