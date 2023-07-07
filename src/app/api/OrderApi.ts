@@ -15,12 +15,12 @@ export interface IOrder {
     city: String;
     name: String;
     price?: number;
-    product?: IProduct[]
+    product?: IProduct[];
     date?: number;
-    status?: string
+    status?: string;
 }
 
-export  interface IProduct{
+export interface IProduct {
     product: {
         _id: string;
         name: string;
@@ -28,10 +28,10 @@ export  interface IProduct{
         dough: string;
         size: string;
         image: string;
-    }
+    };
     price: string;
     count: number;
-    _id: string    
+    _id: string;
 }
 
 export const AddOrderApi = async (data: IOrder) => {
@@ -72,19 +72,26 @@ export const AdminOrderAll = async () => {
         },
     });
 
-    return order.data
+    return order.data;
 };
 
-interface IUpdateOrder{
-    id: string,
-    status: string
-}
-
-export const UpdateOrder = async (data: IUpdateOrder) => {
-    const order = await axios.put(`${domen}/order/update`, data, {
-        headers: {
-            Authorization: `bearer ${localStorage.getItem('access_token')}`
+export const UpdateOrder = async (id: String, status: String) => {
+    const order = await axios.put(
+        `${domen}/order/updateorder`,
+        {
+            status, id
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
         }
-    }) 
-    return order.data
+    );
+    return order.data;
+
+};
+
+interface IUpdateOrder {
+    id: string;
+    status: string;
 }

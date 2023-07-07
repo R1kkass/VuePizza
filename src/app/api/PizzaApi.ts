@@ -15,7 +15,12 @@ export interface IPizza {
 }
 
 export const DeletePizza = async (id: number) => {
-    const pizza = await axios.delete(`${domen}/pizza/delete?_id=${id}`);
+    const pizza = await axios.delete(`${domen}/pizza/delete?_id=${id}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            "Content-Type": "multipart/form-data",
+        },
+    });
     return pizza.data;
 };
 

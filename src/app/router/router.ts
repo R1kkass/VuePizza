@@ -1,5 +1,5 @@
 import Home from "../../page/Home/Home.vue";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
 import Person from "../../page/Person/Person.vue";
 import NotFound from "../../page/NotFound/NotFound.vue";
 import Admin from "@/page/Admin/Admin.vue";
@@ -25,7 +25,7 @@ const routes = [
 
 const router = createRouter({
     routes,
-    history: createWebHistory("/"),
+    history: createWebHashHistory(),
 });
 
 export default router;

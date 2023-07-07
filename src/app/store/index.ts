@@ -11,6 +11,8 @@ import { mutationOrder } from "./order";
 import { actionPizza } from "./pizza";
 import { actionAdminORder } from "./admOrder";
 import { actionTaste } from "./taste";
+import { IAdminUser } from "../api/UsersApi";
+import { actionUsers } from "./userOrder";
 
 interface IState {
     show: boolean;
@@ -20,6 +22,7 @@ interface IState {
     basket: IDataBasket[];
     order: IOrder[];
     admOrder: IOrder[];
+    users: IAdminUser[]
 }
 
 interface IPizza {
@@ -42,6 +45,7 @@ export default createStore<IState>({
         basket: [],
         order: [],
         admOrder: [],
+        users: []
     },
     mutations: {
         switchBasket(state: IState, e: boolean) {
@@ -65,6 +69,9 @@ export default createStore<IState>({
         setAdmOrder(state: IState, order: IOrder[]) {
             state.admOrder = order;
         },
+        setUsers(state: IState, user: IAdminUser[]) {
+            state.users = user
+        }
     },
     getters: {
         getPizza(state: IState) {
@@ -97,6 +104,7 @@ export default createStore<IState>({
         ...mutationOrder,
         ...actionPizza,
         ...actionAdminORder,
-        ...actionTaste
+        ...actionTaste,
+        ...actionUsers
     },
 });

@@ -22,17 +22,23 @@
         </div>
         <GridAdmin name="Заказы" col="2" row="1">
             <AdminOrderCard
-                    :order="product"
-                    v-for="product in $store.state.admOrder"
-                    v-bind:key="product._id"
-                >
-                </AdminOrderCard>
+                :order="product"
+                v-for="product in $store.state.admOrder"
+                v-bind:key="product._id"
+            >
+            </AdminOrderCard>
         </GridAdmin>
         <GridAdmin name="Добавить по вкусу" col="1" row="2">
-            <TasteCard/>
+            <TasteCard
+                :taste="taste"
+                v-for="taste in $store.state.taste"
+                @key="taste._id"
+            />
+            <template v-slot:add><ModalTaste /></template>
         </GridAdmin>
-        <GridAdmin name="Пользователи" col="2" row="2"></GridAdmin>
-        <div></div>
+        <GridAdmin name="Пользователи" col="2" row="2">
+            <UserAdmCard v-for="user in $store.state.users" :user="user"/>
+        </GridAdmin>
     </div>
 </template>
 
@@ -44,8 +50,10 @@ import { domen } from "@/app/const/domen";
 import AdminProductCard from "@/features/AdminProductCard/AdminProductCard.vue";
 import AddPizzaModal from "../../entities/AddPizzaModal/AddPizzaModal.vue";
 import AdminOrderCard from "@/features/AdminOrderCard/AdminOrderCard.vue";
-import TasteCard from '@/features/TasteCard/TasteCard.vue'
-import GridAdmin from "@/widget/GridAdmin/GridAdmin.vue"
+import TasteCard from "@/features/TasteCard/TasteCard.vue";
+import GridAdmin from "@/widget/GridAdmin/GridAdmin.vue";
+import ModalTaste from "@/widget/ModalTaste/ModalTaste.vue";
+import UserAdmCard from "@/features/UserAdmCard/UserAdmCard.vue"
 
 const store = useStore();
 
@@ -53,6 +61,8 @@ onMounted(async () => {
     const pizza = await axios.get(`${domen}/pizza/getall`);
     store.commit("setPizza", pizza.data.pizzas);
     store.dispatch("getAllAdminOrder");
-    store.dispatch('getTaste')
+    store.dispatch("getTaste");
+    store.dispatch("getUsers");
 });
 </script>
+

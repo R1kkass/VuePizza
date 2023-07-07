@@ -11,7 +11,7 @@
                 {{ pizza.ingredients }}
             </div>
             <div class="PriceButton">
-                <slot name="type"/>
+                <slot name="type" />
             </div>
         </div>
     </div>
@@ -39,17 +39,20 @@ export default {
             this.show = !this.show;
         },
         query() {
-            this.show=true
-            this.$router.push({ path: this.$route.path, query: { modal: 'true' }})
+            this.show = true;
+            this.$router.push({
+                path: this.$route.path,
+                query: { modal: "true" },
+            });
         },
     },
     watch: {
-        '$route.query.modal': function () {
-            if(!this?.$route?.query?.modal) {
-                this.show=false
+        "$route.query.modal": function () {
+            if (!this?.$route?.query?.modal) {
+                this.show = false;
             }
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -65,12 +68,11 @@ export default {
         transition: 0.3s;
         img {
             transform: translate(0, 10px);
-            
         }
     }
     &__image {
         margin-bottom: 10px;
-        height: 218px;
+        height: 60%;
         transition: 0.3s;
         img {
             transition: 0.3s;

@@ -49,6 +49,5 @@ export const UpdateBasketApi = async (data: IUpdateBasket) => {
 
 export const DeleteBasketApi = async (id: string) => {
     const basket = await axios.delete(`${domen}/basket/deleteBasket?id=${id}&basketId=${localStorage.getItem('basketId')}`);
-
     return basket.data;
 };

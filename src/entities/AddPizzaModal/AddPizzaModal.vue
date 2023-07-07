@@ -67,7 +67,7 @@ const [category, name, weight, ingredients, price] = useFieldModel([
     "ingredients",
     "price"
 ]);
-interface InputFileEvent extends Event {
+export interface InputFileEvent extends Event {
     target: HTMLInputElement;
 }
 const store = useStore();
