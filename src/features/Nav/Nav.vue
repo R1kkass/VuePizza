@@ -2,10 +2,10 @@
     <div class="Nav">
         <div class="Container">
             <div class="Info">
-                <a href="#pizza">Пицца</a>
-                <a href="#snack">Закуски</a>
-                <a href="#drink">Напитки</a>
-                <a href="#dessert">Другие товары</a>
+                <a href="/#/#pizza">Пицца</a>
+                <a href="/#/#snack">Закуски</a>
+                <a href="/#/#drink">Напитки</a>
+                <a href="/#/#dessert">Другие товары</a>
             </div>
             <div class="">
                 <MyButton

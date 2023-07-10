@@ -7,10 +7,6 @@ const app = express();
 
 app.use(express.static(path));
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

@@ -13,14 +13,10 @@ class UserApi {
                 Authorization: `bearer ${localStorage.getItem("access_token")}`,
             },
         });
-        console.log(user);
-        
         return user.data;
     }
 
     async updateUser(data) {
-        console.log(data);
-        
         const user = await axios.put(
             `${domen}/adminuser/update?id=${data.id}`,
             data,

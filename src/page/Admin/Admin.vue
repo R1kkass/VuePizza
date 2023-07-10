@@ -1,6 +1,6 @@
 <template>
     <div
-        class="w-[90%] xl:grid xl:grid-cols-2 xl:w-[1280px] min-h-[80vh] gap-5 m-auto flex flex-col xl:grid-rows-2 grid-rows-3"
+        class="mb-[10px] w-[90%] xl:grid xl:grid-cols-2 xl:w-[1280px] min-h-[80vh] gap-5 m-auto flex flex-col xl:grid-rows-2 grid-rows-3"
     >
         <div
             class="border border-gray-500 col-start-1 relative col-end-1 overflow-hidden"
