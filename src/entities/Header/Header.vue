@@ -96,7 +96,7 @@ const nameAndCountry = computed<string>(
         align-items: center;
         justify-content: space-between;
         padding-inline: 10px;
-        .Logo{
+        .Logo {
             display: flex;
             align-items: center;
             gap: 10px;
