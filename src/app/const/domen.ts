@@ -1,1 +1,1 @@
-export const domen = 'http://37.140.195.252:5001/api'
+export const domen = 'http://localhost:5001/api'
