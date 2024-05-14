@@ -35,6 +35,8 @@ import PizzaWindow from "@/entities/PizzaWindow/PizzaWindow.vue";
 import OtherWindow from "@/entities/OtherWindow/OtherWindow.vue";
 import BlockProducts from "@/features/BlockProducts/BlockProducts.vue";
 
+document.title="Главная"
+
 export default {
     name: "Home",
     components: {
