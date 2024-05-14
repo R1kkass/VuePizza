@@ -24,4 +24,6 @@
         </div>
     </main>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    document.title = "Ошибка 404"
+</script>

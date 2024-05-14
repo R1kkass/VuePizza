@@ -1,10 +1,10 @@
 <template>
     <header class="Header">
         <div class="Header__first">
-            <div class="Logo">
+            <a class="Logo" href="/">
                 <Logo />
-                <p>BoboPizza</p>
-            </div>
+                <p>DodoPizza</p>
+            </a>
             <div class="Delivery">
                 <h4>Доставка пиццы за 30 минут</h4>
             </div>

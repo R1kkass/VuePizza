@@ -26,6 +26,8 @@ interface IUser{
     email: String
 }
 
+document.title = "Личный кабинет"
+
 export default {
     name: "Person",
     components: { SectionMy, OrderUnit },

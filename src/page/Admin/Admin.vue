@@ -56,6 +56,7 @@ import ModalTaste from "@/widget/ModalTaste/ModalTaste.vue";
 import UserAdmCard from "@/features/UserAdmCard/UserAdmCard.vue"
 
 const store = useStore();
+document.title="Админ"
 
 onMounted(async () => {
     const pizza = await axios.get(`${domen}/pizza/getall`);

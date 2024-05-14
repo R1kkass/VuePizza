@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import Head from './features/Head/Head.vue';
+import Footer from './features/Footer/Footer.vue';
 import BasketWrapper from './shared/BasketWrapper/BasketWrapper.vue'
 import RefresWrapper from './shared/RefreshWrapper/RefreshWrapper.vue'
 </script>
 
 <template>
-      <Head></Head>
-      <router-view></router-view>
-      <BasketWrapper></BasketWrapper>
-      <RefresWrapper></RefresWrapper>
+      <div style="min-height: calc(100vh - 16rem);">
+        <Head></Head> 
+        <router-view></router-view>
+        <BasketWrapper></BasketWrapper>
+        <RefresWrapper></RefresWrapper>
+      </div>
+      <Footer></Footer>
 </template>
 
 <style scoped>
